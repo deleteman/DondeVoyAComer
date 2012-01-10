@@ -1,5 +1,5 @@
 class SystemMailer < ActionMailer::Base
-  default :from => "deleteman@gmail.com", :to => "deleteman@gmail.com"
+  default :from => "info@dondevoyacomer.com", :to => "info@dondevoyacomer.com"
 
 	def home_message user, msg
 		@msg = msg
