@@ -1,0 +1,19 @@
+<%=render 'places/search_form' %>
+<div class="grid_11 prefix_1">
+	<div class="grid_10">
+		<div class="results-view home-box">
+			<h2>Resultados de la búsqueda</h2>
+			<% if @results.total_entries > 0 %>
+			<ul>
+			<% @results.each do |r| %>
+				<li class="<%=cycle("odd","even")%>"><%=render :partial => 'places/place_box', :locals => {:place => r}%></li>
+			<% end %>
+			</ul>
+
+			<%=will_paginate @results %>
+			<% else %>
+			<div class="notification alert" style="display:block;" >No hay resultados para tu búsqueda, intent&aacute; usar el formulario de arriba para refinar tu b&uacute;squeda...</b></div>
+			<% end %>
+			</div>
+		</div>
+		</div>

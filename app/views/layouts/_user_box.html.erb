@@ -1,0 +1,11 @@
+<div class="user-loged-box">
+	<span class="usr-avatar"><%=image_tag user.avatar.url(:thumb) %></span> 
+	<span class="usr-name"><b><%= user.get_fullname%></b></span> <br/>
+	<!--<span class="usr-name"><%#=link_to current_user.get_fullname, current_user%></span> <br/>-->
+	<span class="usr-points">Puntaje: <%=user.points%></span>
+	<% if user.medals.count > 0 %>
+	<br/>
+		<span class="usr-points"><%=user.medals.count%> medalla(s)</span>
+	<% end %>
+	<div class="logout-link"><%=link_to 'Salir', destroy_user_session_path, :method => :delete %></div>
+</div>

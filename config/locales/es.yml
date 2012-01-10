@@ -1,0 +1,58 @@
+## YAML Template.
+es:
+    time:
+        formats:
+            default: "%H:%m hs"
+            short: "%H:%m hs"
+            long: "%d/%m/%Y %H:%m hs"
+    date:
+        formats:
+            short: "dd/mm/yyyy"
+    fullname: "Nombre completo"
+    sign_up: "Registrarse"
+    sign_in: "Ingresar"
+    remember_me: "Recordarme"
+    name: "Nombre"
+    phone_number: "Número de teléfono"
+    address: "Dirección"
+    opening_time: "Abre a las"
+    closing_time: "Cierra a las"
+    type: "Tipo"
+    photo: "Foto"
+    will_paginate:
+        previous_label: "Anterior"
+        next_label: "Siguiente"
+    activerecord:
+        errors:
+            models:
+                place:
+                    attributes:
+                        name:
+                            blank: " no puede ser vacio"
+                user:
+                    attributes:
+                        password:
+                            blank: " no puede ser vacio"
+                        email:
+                            blank: " no puede ser vacio"
+                review:
+                    attributes:
+                        body:
+                            too_long: " demasiado largo"
+                            blank: " no puede ser vacio"
+                            too_short: " es muy corto"
+        models:
+            user: "Usuario"
+            place: "Local"
+            review: "Comentario"
+        attributes:
+            user:
+                fullname: "Nombre completo"
+            place:
+                highlited_food: "Comidas destacadas"
+                place_type: "Tipo de local"
+                working_days: "Días laborables"
+                name: "Nombre"
+            review:
+                points: "Puntos"
+                body: "Texto del comentario"

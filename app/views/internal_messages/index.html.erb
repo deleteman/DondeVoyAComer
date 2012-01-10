@@ -1,0 +1,27 @@
+<h1>Listing internal_messages</h1>
+
+<table>
+  <tr>
+    <th>Subject</th>
+    <th>Target user</th>
+    <th>Body</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @internal_messages.each do |internal_message| %>
+  <tr>
+    <td><%= internal_message.subject %></td>
+    <td><%= internal_message.target_user_id %></td>
+    <td><%= internal_message.body %></td>
+    <td><%= link_to 'Show', internal_message %></td>
+    <td><%= link_to 'Edit', edit_internal_message_path(internal_message) %></td>
+    <td><%= link_to 'Destroy', internal_message, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Internal message', new_internal_message_path %>

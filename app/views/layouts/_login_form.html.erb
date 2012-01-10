@@ -1,0 +1,17 @@
+<% 
+unless user_signed_in? 
+%>
+<div class="login-form">
+	<%= form_for(:user, :url => session_path(:user)) do |f| %>
+	  <%#= f.label :email %>
+	  <%= f.email_field :email, {:class => "text-input", :id => "login-email", :title => "Ingesa tu e-mail"} %>
+
+	  <%= f.password_field :password, {:class => "text-input", :id => "login-pass", :title => "Ingresa tu clave aquí"} %>
+
+	  <%= f.submit "Entrar" %>
+	<%= link_to "Registrarse", new_registration_path(:user), {:class => "register-link"} %><br />
+	<% end %>
+</div>
+<% else %>
+	<%=render 'layouts/user_box', :user => current_user%>
+<% end %>

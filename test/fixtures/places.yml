@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  active: false
+  phone_number: MyString
+  address: MyString
+  opening_time: 2011-12-10 14:04:46
+  closing_time: 2011-12-10 14:04:46
+  picture_path: MyString
+  type: MyString
+
+two:
+  name: MyString
+  active: false
+  phone_number: MyString
+  address: MyString
+  opening_time: 2011-12-10 14:04:46
+  closing_time: 2011-12-10 14:04:46
+  picture_path: MyString
+  type: MyString

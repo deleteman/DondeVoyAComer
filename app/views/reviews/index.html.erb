@@ -1,0 +1,44 @@
+<h2>Comentarios</h2>
+
+<% if reviews.length > 0 %>
+	<% reviews.each do |review| %>
+		<div class="grid_12 review-box <%=cycle("odd", "even")%>">
+			<div class="grid_1 review-score">
+				<% if !review.user_voted_for_this? current_user, :up %>
+					<% options = {} %>
+				<% else %>
+					<% options = {:class => "voted-by-me", :alt => "Click para cancelar voto"}%>
+				<% end %>
+				<%=link_to "&#9650;".html_safe, "/reviews/#{review.id}/vote_up", options %> 
+
+				<%=review.votes%> 
+				
+				<% if !review.user_voted_for_this? current_user, :down %>
+					<% options2 = {} %>
+				<% else %>
+					<%options2 = {:class => "voted-by-me", :alt => "Click para cancelar voto"}%>
+				<% end %>
+				<%=link_to "&#9660;".html_safe, "/reviews/#{review.id}/vote_down", options2%> 
+			</div>
+			<div class="grid_11 review-data">
+				<div class="review-header grid_12">
+					<div class="grid_2">Puntaje: <%=review.points%></div>
+					<div class="grid_4 prefix_6 fecha-review"><%=l(review.created_at, :format =>:long)%></div>
+				</div>
+				<div class="grid_12 review-body">
+					<%=review.body%>
+				</div>
+				<div class="grid_2 prefix_10 review-owner">
+					<%#=link_to 'lala', review.owner  %>
+					<%=review.owner.get_fullname%>
+				</div>
+			</div>
+		</div>
+	<% end %>
+<% else %>
+<div class="notice">
+	Actualmente no hay comentarios sobre este local, se el primero en comentar y votarlo!
+</div>
+
+<% end %>
+<%=render 'reviews/form', :locals => {:review => @new_review}%>

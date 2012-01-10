@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Type:</b>
+  <%= @medal.type %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @medal.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_medal_path(@medal) %> |
+<%= link_to 'Back', medals_path %>

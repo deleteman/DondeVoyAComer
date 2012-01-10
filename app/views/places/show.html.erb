@@ -1,0 +1,81 @@
+<div class="grid_10 prefix_1 show-page">
+	<div class="grid_8">
+		<div class="ficha-local">
+			<div class="grid_2 photo_box">
+				<%= image_tag @place.photo.url(:thumb) %>
+			</div>
+			<div class="datos-local grid_8">
+				<h2>
+  					<%= show_or_default @place.name %>
+					<%=link_to "(Editar)", edit_place_path(@place)%>
+				</h2>
+				<div class="small-data important">
+					<b>Puntaje: </b><%= @place.average_points%> / 5
+				</div>
+
+				<div class="small-data">
+  					<%= show_or_default @place.address%>
+				</div>
+				<div class="small-data">
+  					Tel.: <%= show_or_default @place.phone_number%>
+				</div>
+				<div class="small-data">
+  					<b>Atención al público</b>
+					<% if !@place.working_days.nil? && @place.working_days.length > 0 %>
+						<% 
+						days = @place.working_days.map { |w| 
+							w.short_name 
+						}.join(" - ")%>
+					<%=show_or_default days%>
+					<% end %>
+					<br/>
+					Desde las <%= show_or_default(@place.opening_time) %> a las  <%= show_or_default(@place.closing_time) %>
+				</div>
+				<div class="small-data">
+  					Comidas destacadas: <%= show_or_default @place.highlited_food%>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="listado-comentarios">
+			<%=render :file => 'reviews/index', :locals => {:reviews => @place.reviews } %>
+		</div>
+	</div>
+	<div class="grid_4">
+		<div id="map_canvas">
+
+		</div>
+		<script type="text/javascript">
+			plotCoords(<%=@place.lat%>, <%=@place.lng%>);
+		</script>
+		
+	<div class="puntaje">
+	<!--	Puntaje: <%=@place.average_points%>-->
+	</div>
+<div class="home-box">
+	<h2>Comentario destacado</h2>
+	<% if @place.reviews.length > 0 %>
+	<% best_review = @place.reviews.first%>
+		<span class="review-box">
+			<div class="review-header">
+				Comentario de: 
+				<%= best_review.owner.get_fullname%>	
+				(<%=best_review.points%> / 5)
+			</div>
+			<div class="review-body">
+				<%= best_review.body%>	
+			</div>
+			<div class="review-owner">
+			</div>
+
+		</span>
+	<% else %>
+	<span class="notice">
+		No hay ningún comentario destacado aún.<br/>
+		¡Vota por uno de ellos para que aparezca aquí!
+	</span>
+	<% end %>
+</div>
+	</div>
+
+</div>

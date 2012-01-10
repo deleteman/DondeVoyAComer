@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>¿D&oacute;nde voy a comer?</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag 'jQuery.timePicker', 'jquery.inFieldLabel', 'slideshow', 'jquery-ui', 'jquery.backgroundPosition' %>
+  <%= javascript_include_tag 'http://maps.googleapis.com/maps/api/js?key=AIzaSyDKG2HX-pGA8OJgyzCNaZoJNFWdE52U6u0&sensor=false' %>
+  <%= javascript_include_tag 'geocoding' %>
+  <%= csrf_meta_tag %>
+  <%=yield :head %>
+<meta name="google-site-verification" content="rm5nqQp4Z_Kw5oLMqj7EdVuqEDAzcVps8PMRsNxk-t8" />
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28224454-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</head>
+<body>
+	<div class="container_12">
+		<div class="header grid_12">
+			<div class="inner-head">
+				<div class="title grid_3 alpha">
+					<a href="/">
+						<span class="hidden">¿D&oacute;nde voy a comer?</span>
+						<img src="/images/logo-v2.png" />
+					</a>
+				</div>
+				<div class="login-menu grid_5 prefix_4 omega">
+					<%=render 'layouts/login_form'%>
+				</div>
+			</div>
+		</div>
+		<div class="grid_12" >
+			<div class="grid_5 prefix_6">
+				<ul class=" menu">
+					<li id="home-link" class="<%= is_current_page(@current_page, "home")%>" ><%= link_to "Inicio", "/" %></li>
+					<li id="search-link" class="<%= is_current_page(@current_page, "search")%>"><%= link_to "Buscar donde comer", "/search" %></li>
+					<li id="add-link" class="<%= is_current_page(@current_page, "add")%>"><%= link_to "Ingresar local", new_place_path %></li>
+					<li id="help-link" class="<%= is_current_page(@current_page, "ayuda")%>"><%= link_to "¡Ayuda!", "/home/ayuda" %></li>
+				</ul>
+			</div>
+		</div>
+		<div class="actividad-actual grid_12" >
+	<b>Último momento</b> 
+	<span id="current-activity">
+
+	</span>
+</div>
+<%
+#flash[:alert] = "Hola, esta es una alerta de pruebas..."
+#flash[:error] = "Este es un mensaje de error! Cuidado!"
+#flash[:notice] = "Parece que todo está bien, siga tranquilo por favor"
+#flash[:medals] = "<b>Felicitaciones!</b> Te ganaste la medalla purpura!"
+%>	
+		<%  if !flash.nil?  %>
+		<ul class="notifications">
+			<%
+			[:alert,:notice, :error, :medals].each do |key| 
+				if !flash[key].nil? 
+			%>
+			<% if (flash[key].kind_of?(Array) && flash[key].length > 0) || flash[key].length > 0 %>
+					<li class="notification <%=key%>">
+						<a href="#" class="close-link">Cerrar</a>
+						<div class="icon">
+							<img src="/images/<%=key%>.png" />
+						</div>
+						<p>
+						<% if flash[key].kind_of?(Array) %>
+							<%= h flash[key].join("<br/>").html_safe %>
+						<% else %>
+							<%=h flash[key].html_safe%>
+						<% end %>
+						</p>
+					</li>
+				<% end %>
+			<% end %>
+			<% end %>
+		</ul>
+		<% end %>
+		<div class="grid_12" id="main-wrapper">
+			<%= yield %>
+		</div>
+		<div class="footer grid_12">
+			<div class="footer-text">
+				<% form_tag "/send_message" do%>
+					<%=label_tag "Dejanos un mensaje:"%>
+					<%=text_area_tag "msg"%>
+					<%=submit_tag "Enviar"%>
+				<% end %>
+				<div class="links-block">
+					<ul>
+						<li><a href="/home/tenes_local">¿Tenés un local comercial?</a></li>
+						<li><a href="/home/se_viene">Lo que se viene.</a></li>
+						<li><a href="/home/ayuda">¡Ayuda!</a></li>
+					</ul>
+				</div>
+
+			</div>
+			<div class="footer-bottom">
+
+				<div id="twitter-link"><a href="http://twitter.com/DondeVoyAComer" target="_blank"><img src="/images/bird.png" alt="Seguinos en Twitter!" title="Seguinos en Twitter!"/></a></div>
+				<a href="mailto:info@dondevoyacomer.com">info@dondevoyacomer.com</a> - dondevoyacomer.com 2011
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>

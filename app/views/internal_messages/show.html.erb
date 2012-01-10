@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Subject:</b>
+  <%= @internal_message.subject %>
+</p>
+
+<p>
+  <b>Target user:</b>
+  <%= @internal_message.target_user_id %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @internal_message.body %>
+</p>
+
+
+<%= link_to 'Edit', edit_internal_message_path(@internal_message) %> |
+<%= link_to 'Back', internal_messages_path %>

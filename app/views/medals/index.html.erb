@@ -1,0 +1,25 @@
+<h1>Listing medals</h1>
+
+<table>
+  <tr>
+    <th>Type</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @medals.each do |medal| %>
+  <tr>
+    <td><%= medal.type %></td>
+    <td><%= medal.description %></td>
+    <td><%= link_to 'Show', medal %></td>
+    <td><%= link_to 'Edit', edit_medal_path(medal) %></td>
+    <td><%= link_to 'Destroy', medal, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Medal', new_medal_path %>

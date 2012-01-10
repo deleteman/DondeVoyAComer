@@ -1,0 +1,13 @@
+
+<div class="place-box grid_12">
+	<div class="grid_2 place_photo ">
+		<%=image_tag place.photo.url(:thumb) %>
+	</div> 
+	<div class="grid_9 data-block">
+		<div class="name"><%=link_to place.name, place%></div>
+		<div class="ratting"><b>Puntaje:</b> <%=place.average_points%></div>
+		<div class="address"><%=place.address%></div>
+		<div class="phone_number">Tel. <%=show_or_default place.phone_number%></div>
+	</div>
+</div>
+<div class="clear"></div>

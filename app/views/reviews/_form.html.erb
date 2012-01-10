@@ -1,0 +1,42 @@
+
+<% content_for :head do %>
+	<%=javascript_include_tag 'characterCount' %>
+<% end %>
+
+
+<div class="grid_12 home-box review-form">
+<h2>Escribí tu comentario</h2>
+<div class="help-text">
+	Contanos que te pareció este local y ayudá a futuros visitantes a decidir...
+</div>
+<%= form_for(@review) do |f| %>
+  <% if @review.errors.any? %>
+    <div id="error_explanation">
+      <h2>Se encontraron <%= @review.errors.count %> error(es) al intentar guardar el comentario:</h2>
+
+      <ul>
+      <% @review.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.hidden_field :owner_user_id %>
+    <%= f.hidden_field :place_id %>
+  </div>
+  <div class="field">
+    <%= f.label :points %>
+    <%= f.select :points, options_for_select([1,2,3,4, 5]) %>
+  </div>
+  <div class="field">
+    <%= f.label :body %><br />
+    <%= f.text_area :body, {:rows => 6, :width => "100%"} %>
+	<div class="help-text">Cantidad de caracteres restantes: <b><span id="review_body_maxlength">400</span></b></div>
+  </div>
+  <div class="actions">
+    <%= f.submit "Enviar comentario" %>
+  </div>
+<% end %>
+</div>

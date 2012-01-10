@@ -1,0 +1,69 @@
+<%= form_for(@place,:html => {:multipart => true, :id => "new-place-form"}) do |f| %>
+  <% if @place.errors.any? %>
+    <div id="error_explanation">
+      <h2>Hubo error(es) al intentar guardar el local:</h2>
+	
+      <ul>
+      <% @place.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label t :name %><br />
+    <%= f.text_field :name, {:title => "Nombre del local comercial, ej: La Pasiva, McDonald's, etc"} %>
+  </div>
+ <div class="field">
+    <%= f.label t :phone_number %><br />
+    <%= f.text_field :phone_number %>
+  </div>
+  <div class="field" id="address-cont">
+    <%= f.label t :address %><br />
+    <%= f.text_field :address %>
+  </div>
+	<div class="field" id="map_canvas">
+    </div>
+
+  <div class="field">
+		<%= f.label t ('activerecord.attributes.place.working_days') %><br />
+		<% WorkingDay.all.each do |d| %>
+			<label><%= check_box_tag "working_days_names[]", d.name, @place.working_days.include?(d),{:class => "chkbox"}  %> <%=d.name.html_safe%></label>
+		<% end %>
+  </div>
+
+<%= f.hidden_field :lng %>
+<%= f.hidden_field :lat %>
+  <div class="field">
+    <%= f.label t :opening_time %><br />
+    <%= f.time_select :opening_time, {:minute_step => 15} %>
+  </div>
+  <div class="field">
+    <%= f.label t :closing_time %><br />
+    <%= f.time_select :closing_time , {:minute_step => 15}%>
+  </div>
+  <div class="field">
+    <%= f.label t :photo %><br />
+    <%= f.file_field :photo%>
+  </div>
+  <div class="field">
+    <%= f.label t ('activerecord.attributes.place.place_type') %><br />
+	<%= places_types_dropdown @place.place_type%>
+  </div>
+  <div class="field">
+    <%= f.label t ('activerecord.attributes.place.highlited_food') %><br />
+	<%= f.text_field :highlited_food %>
+	<span class="form-help-text">Lista de comidas separada por coma (ej: panchos, minutas, pastas)</span>
+  </div>
+  
+
+  <div class="actions">
+    <%= f.submit "Guardar" %>
+    <%#= link_to "","",:class => "guardar-btn" %>
+  </div>
+<div class="clearfix"></div>
+<% end %>
+<script type="text/javascript">
+	initializeGeoCoding();
+</script>

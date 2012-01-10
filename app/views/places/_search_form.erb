@@ -1,0 +1,88 @@
+<%
+if @search_params.nil?
+	@search_params = Hash.new
+end
+%>
+
+<div class="grid_11 prefix_1">
+<div class="grid_10  home-box search-box">
+		<h2>
+			Buscar dónde comer...
+			<% if !@results.nil? %>
+			<span class="small"><%=@results.total_entries%> resultado(s) encontrado(s)</span>
+			<a href="#">(buscar de nuevo)</a>
+			<% end  %>
+		</h2>
+		<span >
+			<div class="help-text ">
+				Encontrá los mejores sitios donde comer usando este cuadro de búsqueda.
+				<br/>
+				Ningún dato es obligatorio, ingresá la información que creas necesaria, solo recuerda que mientras más información ingreses
+				mejores serán los resultados encontrados.
+			</div >
+			<%=form_tag( "search", :method => 'get') do  %>
+			<div class="prefix_1 grid_5">
+				<div class="field">
+					<label for="address">Comer cerca de... (Pr&oacute;ximamente)</label>
+					<%=text_field_tag "address", @search_params[:address], {:disabled => true, :title => "Ingresá la dirección para buscar en los alrededores", :class => "text-input"} %>
+				</div>
+				<div class="field">
+					<label for="name">Nombre del local </label>
+					<%=text_field_tag "name", @search_params[:name],{:title => "Ingresá el nombre del local (ej. La Pasiva)", :class => "text-input"} %>
+				</div>
+
+				<div class="field">
+					<label for="highlighted_food">Comida</label>
+					<%=text_field_tag "highlighted_food", @search_params[:highlighted_food], {:title => "Esribí lo que tenés ganas de comer (ej. pizza, panchos)", :class => "text-input"} %>
+				</div>
+			</div>
+
+			<!--
+			<div class="field">
+				<label for="category">Categoría</label>
+				<%=select_tag "category", options_from_collection_for_select(Category.all(:order => :name),"id", "name")%>
+			</div>
+   -->
+			<div class="prefix_1 grid_5">
+				<div class="field">
+					<label for="place_type">¿Qué estás buscando?</label>
+					<%=places_types_dropdown(@search_params[:place_type], "place_type")%>
+				</div>
+				<div class="field">
+					<label >¿Cuándo querés ir?</label>
+					<% WorkingDay.all.each do |d| %>
+						<% 
+						if @search_params[:working_days_names].nil?
+							checked = false
+						else 
+							checked = @search_params[:working_days_names].include?(d.short_name)
+						end %>
+						<label><%= check_box_tag "working_days_names[]", d.short_name, checked %> <%=d.name.html_safe%></label>
+					<% end %>
+				</div>
+
+				<div class="field">
+					<label >¿A qué hora?</label>
+					<%=text_field_tag "start_time",@search_params[:start_time], {:class => "time-picker"} %>
+				</div>
+			</div>
+   <!--
+				<div class="grid_1 prefix_10">
+					<%=link_to "", "", :class => "search-btn" %>
+				</div>
+-->
+   <!---->
+				<div class="grid_1 prefix_10">
+					<%=submit_tag "Buscar &#10162;".html_safe, {:class => "search-btn"} %>
+				</div>
+   <!---->
+			<% end %>
+		</span>
+	</div>
+	</div>
+<% if !@results.nil? %> 
+<script type="text/javascript">
+	$(".home-box.search-box").animate({height:"30px", minHeight:"30px"});
+	$(".home-box.search-box").children().not("h2").hide();
+</script>
+<% end %>

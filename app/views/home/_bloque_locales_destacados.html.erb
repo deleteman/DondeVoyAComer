@@ -1,0 +1,36 @@
+<div class="grid_11 prefix_1">
+	<div class="grid_10">
+		<div class="home-box recommended-places-parent">
+			<h2>
+				Locales recomendados...
+			</h2>
+			<span>
+				<p>
+					<div class="recommended-places grid_12" >
+					<% @recommended_places.each do |rplace| %>
+						<div class="slide">
+							<div class="grid_8 alpha">
+								<%= render :partial => "places/place_box", :locals => {:place => rplace}%>	
+							</div>
+							<div class="grid_4 best-review-block omega">
+								<%= rplace.reviews.first.body.truncate 180 %>
+								<br/>
+								<div class="align-right review-author">
+									<%= rplace.reviews.first.owner.get_fullname%>
+								</div>
+
+
+							</div>
+						</div>
+					
+					<% end %>
+					</div>
+
+				</p>
+			</span>
+		</div>
+	</div>
+	
+</div>
+
+
