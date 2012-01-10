@@ -1,26 +1,25 @@
 # SQLite version 3.x
 #   gem install sqlite3
 development:
-  adapter: mysql
-  host: mysql.dondevoyacomer.com
-  encoding: utf8
-  database: dev_dondecomo
-  username: dondecomouser
-  password: dondecomo
-  socket: /var/run/mysqld/mysqld.sock
+  adapter: sqlite3
+  database: db/dev_dondecomo.db
 
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  adapter: mysql
-  encoding: utf8
-  database: test_dondecomo
-  host: mysql.dondevoyacomer.com
-  username: dondecomouser
-  password: dondecomo
-  socket: /var/run/mysqld/mysqld.sock
+  adapter: sqlite3
+  database: db/test_dondecomo.db
+
+
+#  adapter: mysql
+#  encoding: utf8
+#  database: test_dondecomo
+#  host: mysql.dondevoyacomer.com
+#  username: dondecomouser
+#  password: dondecomo
+#  socket: /var/run/mysqld/mysqld.sock
 
 production:
   adapter: mysql

@@ -1,6 +1,10 @@
 Mensaje enviado desde el sitio de DondeVoyAComer.com
 =====================================================
 
+<%if !@user.nil? %>
 Usuario: <%=@user.get_fullname%>
+<% else %>
+Usuario: Anonimo
+<%end %>
 Mensaje:
 <%=@msg%>
