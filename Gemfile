@@ -14,7 +14,7 @@ group :development do
 	gem 'sqlite3'
 end
 
-group :production do
+group :deployment do
 	gem 'mysql'
 end
 
