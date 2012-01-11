@@ -1,8 +1,8 @@
 
 
 action_points: &action_points
-    new_place: 10
-    comment_place: 10
+    new_place: 15
+    comment_place: 8 
     upvoted_my_comment: 5
     downvoted_my_comment: -2
     vote_comment: 1

@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
 	end
 
 	def can_edit_place?
-		if points > 1000
+		if points > 100
 			true
 		else
 			false
