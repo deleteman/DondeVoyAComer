@@ -11,8 +11,23 @@
 	* <%= f.label t(:fullname)%><br />
   	<%= f.text_field :fullname, {:class => "text-input"}%></div>
 
-<div class="field"><%= f.label :avatar %><br />
+  <div class="field"><%= f.label :avatar %><br />
   <%= f.file_field :avatar%></div>
+
+		<fieldset>
+			<legend>Sexo</legend>	
+	 <div class="field"><%= f.label "Hombre" %>
+	  <%= f.radio_button :sex, "Hombre"%></div>
+	 <div class="field"><%= f.label "Mujer" %>
+	  <%= f.radio_button :sex, "Mujer"%></div>
+		</fieldset>
+
+ <div class="field"><%= f.label :birth_date%><br />
+	 <div class="clearfix" id="fecha_nac_cont">
+		<%= f.text_field :birth_date, {:id => "fecha_nacimiento"}%></div>
+ </div>
+
+
 
 
   <div class="field">* <%= f.label :email %><br />

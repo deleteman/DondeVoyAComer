@@ -10,7 +10,25 @@
 					<%=link_to "(Editar)", edit_place_path(@place)%>
 				</h2>
 				<div class="small-data important">
-					<b>Puntaje: </b><%= @place.average_points%> / 5
+					<b>Puntaje: </b><%= @place.average_points%> / 5 - <a href="#detalles" title="Detalles de la puntuación" class="detalles_puntuacion" id="<%= @place.id %>" >Detalles</a>
+					<div style="display:none;">
+					<div class="detalles_puntuacion" id="detalles">
+						<h3>Discriminado por sexo</h3>
+						<p>
+							<b>Promedio masculino:</b> <%=@place.average_points :masc%><br/>
+							<b>Promedio femenino:</b> <%=@place.average_points :fem %><br/>
+						</p>
+						<h3>Discriminado por edades</h3>
+						<p>
+							<b>Menores de 15 a&ntilde;os:</b> <%=@place.average_points :age, :less_15%><br/>
+							<b>Entre 15 y 25 a&ntilde;os:</b> <%=@place.average_points :age, :between_15_25%><br/>
+							<b>Entre 25 y 50 a&ntilde;os:</b> <%=@place.average_points :age, :between_25_50%><br/>
+							<b>Entre 50 y 65 a&ntilde;os:</b> <%=@place.average_points :age, :between_50_65%><br/>
+							<b>Mayor de 65 a&ntilde;os:</b> <%=@place.average_points :age, :more_65%><br/>
+						</p>
+
+					</div>
+						</div>
 				</div>
 
 				<div class="small-data">

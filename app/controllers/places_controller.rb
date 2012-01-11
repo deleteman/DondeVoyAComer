@@ -26,6 +26,7 @@ class PlacesController < ApplicationController
   # GET /places/1
   # GET /places/1.xml
   def show
+	@meta[:title] = "DondeVoyAComer.com | Detalles del local de comida"
     @place = Place.find(params[:id])
 	@review = Review.new
 	@review.place_id = @place.id
@@ -42,6 +43,7 @@ class PlacesController < ApplicationController
   # GET /places/new
   # GET /places/new.xml
   def new
+	@meta[:title] = "DondeVoyAComer.com | Ingresar nuevo local de comida"
 	  @current_page = "add"
     @place = Place.new
 
@@ -117,6 +119,7 @@ class PlacesController < ApplicationController
 
 
   def search
+	  @meta[:title] = "DondeVoyAComer.com | Busqueda de locales de comida"
 	  @current_page = "search"
 	  @search_params = params;
 	  conditions = Array.new

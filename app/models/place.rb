@@ -8,15 +8,53 @@ class Place < ActiveRecord::Base
 
 	#has_many :food_types
 
-	def average_points
+	def average_points *options 
 		total_points = 0
-		reviews.each do |r|
+		total_reviews = Array.new
+		if options.count > 0
+			if options.first == :masc
+				total_reviews = reviews.select do |r|
+					r.owner.sex == "M"
+				end
+			end
+			if options.first == :fem
+				total_reviews = reviews.select do |r|
+					r.owner.sex == "F"
+				end
+			end
+
+			if options.first == :age
+				opt = options.last.to_s
+				opts = opt.split("_")
+
+				case opts.first
+				when "less"
+					total_reviews = reviews.select do |r|
+						r.owner.age < Integer(opts.last)
+					end
+				when "between"
+					total_reviews = reviews.select do |r|
+						age = r.owner.age
+						age <= Integer(opts.last) && age >= Integer(opts[1])
+					end
+				when "more"
+					total_reviews = reviews.select do |r|
+						r.owner.age > Integer(opts.last)
+					end
+				end
+			end
+		else
+			total_reviews = reviews
+		end
+
+		total_reviews.each do |r|
 			total_points += r.points
 		end
-		if reviews.length == 0
+
+		if total_reviews.length == 0
 			return 0
 		else
-			return total_points / reviews.length
+			return total_points / total_reviews.length
 		end
 	end
 

@@ -1,5 +1,15 @@
 module ApplicationHelper
 
+	def print_meta_data meta_array
+		meta  = ""
+		if !meta_array.nil?
+			meta_array.each do |k,v|
+				meta += "<meta name='#{k}' content='#{v}'/>"
+			end
+		end
+		meta.html_safe
+	end
+
 	def is_current_page page, should_be
 		if !page.nil? 
 			if page == should_be

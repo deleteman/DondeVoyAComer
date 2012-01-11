@@ -1,19 +1,6 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
-
-function addNotification(type) {
-	var noti = $('<div class="notification">' + 
-				' <div class="' + type + '">' +
-				'  <a href="#" class="close-link">Cerrar</a>' + 
-				' Mensaje!'+
-				' </div>' +
-				' </div>');
-
-  $("body").append(noti);
-
-}
-
 $(document).ready(function() {
 	$("#add-link").hover(function(){
 		$(this).stop().animate({backgroundPosition:"105px 0px" },'fast');
@@ -112,6 +99,24 @@ $(document).ready(function() {
 		return false;
 	});
 
+
+	$("#fecha_nacimiento").datepicker({
+		changeMonth:true,
+		changeYear:true,
+		showOn:"button",
+		buttonImage:"/images/calendar.png",
+		buttonImageOnly:true,
+		minDate:"-80Y",
+		maxDate:"-10Y",
+		constrainInput:true,
+		yearRange:'-80,-10'
+	});
+
+	$("a.detalles_puntuacion").fancybox({
+			'transitionIn':'fade',
+			'transitionOut':'fade'
+	});
+		
 });
 
 var activityShower = function() {
@@ -122,6 +127,9 @@ activityShower.prototype.getLastestActivity = function () {
 	var path = "/actions";
 	var self = this;
 	$.getJSON(path, function(json) {
+		if(json == null) {
+			return null;
+		}
 		if(self.latest_id != json.action.id) {
 			self.latest_id = json.action.id;
 			$("#current-activity").html(json.action.description);

@@ -12,10 +12,19 @@ class User < ActiveRecord::Base
   has_many :medals, :class_name => "UserMedal"
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :fullname, :email, :password, :password_confirmation, :remember_me, :avatar
+  attr_accessible :fullname, :email, :password, :password_confirmation, :remember_me, :avatar, :birth_date, :sex
 
   after_create :initialize_points
 
+  validates :fullname, :presence => true
+
+	def age 
+		date = Date.today
+		dob = birth_date
+		day_diff = date.day - dob.day
+	    month_diff = date.month - dob.month - (day_diff < 0 ? 1 : 0)
+   		Integer(date.year - dob.year - (month_diff < 0 ? 1 : 0))
+	end
 
 	def set_flash txt
 		@flash = txt;

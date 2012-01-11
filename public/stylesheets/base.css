@@ -500,6 +500,28 @@ span.inline-label.focused {
 	padding:10px;
 }
 
+
+div.detalles_puntuacion  h3 {
+	border-bottom: 3px solid #AAAAAA;
+    display: block;
+    font-size: 110%;
+    margin-top: 9px;
+    padding: 0;
+}
+
+div.detalles_puntuacion  p{
+	background: none repeat scroll 0 0 #EEEEEE;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    font-weight: normal;
+    margin: 0;
+    padding: 10px;
+}
+.ui-dialog-title {
+	color:white;
+	text-shadow:1px 1px black;
+}
+
 .review-box .review-data {
 	border-radius:10px;
 }
@@ -950,4 +972,24 @@ span.inline-label.focused {
 
 #texto-futuro ul li{
 	padding:5px;
+}
+
+/** Form new user **/
+#user_new fieldset {
+	border:1px solid black;
+	padding:10px;
+	width:40%;
+}
+#user_new legend {
+	font-weight: bold;
+}
+
+#fecha_nac_cont input {
+	float:left;
+	width:200px;
+}
+#fecha_nac_cont img {
+	width:45px;
+	float:left;
+
 }

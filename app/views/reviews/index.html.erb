@@ -36,9 +36,10 @@
 		</div>
 	<% end %>
 <% else %>
-<div class="notice">
-	Actualmente no hay comentarios sobre este local, se el primero en comentar y votarlo!
-</div>
 
+<div class="notification alert" style="display:block;" >
+	Actualmente no hay comentarios sobre este local, ¡se el primero en <b>comentar y votarlo!</b>
+	
+</div>
 <% end %>
 <%=render 'reviews/form', :locals => {:review => @new_review}%>

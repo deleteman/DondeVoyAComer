@@ -48,6 +48,8 @@ es:
         attributes:
             user:
                 fullname: "Nombre completo"
+                birth_date: "Fecha de nacimiento"
+
             place:
                 highlited_food: "Comidas destacadas"
                 place_type: "Tipo de local"
