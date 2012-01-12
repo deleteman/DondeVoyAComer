@@ -237,6 +237,7 @@ b { font-weight: bold;}
     display: block;
     text-decoration: none;
 	text-shadow: -1px -1px white;
+	font-size:12px !important;
 /*	background: none repeat scroll 0 0 #362E84;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
