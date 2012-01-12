@@ -7,7 +7,7 @@ class PlacesController < ApplicationController
 		if !current_user.nil? && current_user.can_edit_place?
 			return true
 		else
-			flash[:error] = "Necesitas 1000 puntos para poder editar locales comerciales"
+			flash[:error] = "Necesitas 100 puntos para poder editar locales comerciales"
 			redirect_to request.referer
 			return false
 		end
