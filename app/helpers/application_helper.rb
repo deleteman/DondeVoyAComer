@@ -1,5 +1,13 @@
 module ApplicationHelper
 
+	def print_page_title meta_array
+		if meta_array.nil? || meta_array[:title].nil?
+			return "DondeVoyAComer.com"
+		else
+			return meta_array[:title]
+		end
+	end
+
 	def print_meta_data meta_array
 		meta  = ""
 		if !meta_array.nil?
