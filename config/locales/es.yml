@@ -33,8 +33,12 @@ es:
                     attributes:
                         password:
                             blank: " no puede ser vacio"
+                            confirmation: " debe ser ingresado dos veces"
+                            too_short: " es muy corto, debe ser por lo menos de 6 caracteres"
                         email:
                             blank: " no puede ser vacio"
+                        fullname:
+                            blank: " no puede ser vacío"
                 review:
                     attributes:
                         body:
@@ -47,7 +51,7 @@ es:
             review: "Comentario"
         attributes:
             user:
-                fullname: "Nombre completo"
+                fullname: "Nombre"
                 birth_date: "Fecha de nacimiento"
 
             place:
