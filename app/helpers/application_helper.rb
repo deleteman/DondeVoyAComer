@@ -27,7 +27,7 @@ module ApplicationHelper
 	end
 
 	def places_types_dropdown selected_value, name = "place[place_type]"
-		select_tag(name,options_for_select([["No importa",""], ["Bar","bar"], ["Restaurant", "rest"], ["Comida rapida", "fast"], ["Carrito", "car"]], :selected => selected_value))
+		select_tag(name,options_for_select([["No importa",""], ["Bar","bar"], ["Restaurant", "rest"], ["Pizzeria", "piza"], ["Comida rapida", "fast"], ["Carrito", "car"], ["Heladeria", "heladeria"]], :selected => selected_value))
 	end
 
 	def show_or_default value, def_value = nil

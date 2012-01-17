@@ -24,7 +24,8 @@
 
  <div class="field"><%= f.label :birth_date%><br />
 	 <div class="clearfix" id="fecha_nac_cont">
-		<%= f.text_field :birth_date, {:id => "fecha_nacimiento"}%></div>
+		<%= text_field_tag "fecha_nacimiento"%>
+		<%= f.hidden_field :birth_date, {:id => "hidden_fecha"}%></div>
  </div>
 
 

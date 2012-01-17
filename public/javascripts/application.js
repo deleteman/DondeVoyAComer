@@ -101,6 +101,8 @@ $(document).ready(function() {
 
 
 	$("#fecha_nacimiento").datepicker({
+		altField:'#hidden_fecha',
+		altFormat:"yy-mm-dd",
 		changeMonth:true,
 		changeYear:true,
 		showOn:"button",
