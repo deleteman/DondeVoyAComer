@@ -19,11 +19,16 @@ class User < ActiveRecord::Base
   validates :fullname, :presence => true
 
 	def age 
-		date = Date.today
-		dob = birth_date
-		day_diff = date.day - dob.day
-	    month_diff = date.month - dob.month - (day_diff < 0 ? 1 : 0)
-   		Integer(date.year - dob.year - (month_diff < 0 ? 1 : 0))
+		if !birth_date.nil?
+			date = Date.today
+			dob = birth_date
+			day_diff = date.day - dob.day
+			month_diff = date.month - dob.month - (day_diff < 0 ? 1 : 0)
+			Integer(date.year - dob.year - (month_diff < 0 ? 1 : 0))
+		else
+			0
+		end
+
 	end
 
 	def set_flash txt
