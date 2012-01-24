@@ -1,5 +1,6 @@
 class Action < ActiveRecord::Base
 
+
 	belongs_to :user, :foreign_key => "owner_user_id"
 	@@action_types = [:new_place, :new_comment, :vote_up_comment, :vote_down_comment, :edit_place]
 
